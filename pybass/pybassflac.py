@@ -21,6 +21,9 @@ BASS_FILEPROCS = pybass.BASS_FILEPROCS
 if platform.system().lower() == 'windows':
 	bassflac_module = ctypes.WinDLL('bass_flac.dll')
 	func_type = ctypes.WINFUNCTYPE
+elif platform.system().lower() == 'darwin':
+	bassflac_module = ctypes.CDLL('./libbassflac.dylib', mode=ctypes.RTLD_GLOBAL)
+	func_type = ctypes.CFUNCTYPE
 else:
 	# correct by Wasylews (sabov.97@mail.ru), thank him
 	bassflac_module = ctypes.CDLL('./libbassflac.so', mode=ctypes.RTLD_GLOBAL)

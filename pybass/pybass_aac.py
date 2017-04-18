@@ -21,6 +21,9 @@ BASS_FILEPROCS = pybass.BASS_FILEPROCS
 if platform.system().lower() == 'windows':
 	bass_aac_module = ctypes.WinDLL('bass_aac')
 	func_type = ctypes.WINFUNCTYPE
+elif platform.system().lower() == 'darwin':
+	bass_aac_module = ctypes.CDLL('libbass_aac.dylib')
+	func_type = ctypes.CFUNCTYPE
 else:
 	bass_aac_module = ctypes.CDLL('libbass_aac.so')
 	func_type = ctypes.CFUNCTYPE
