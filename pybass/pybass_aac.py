@@ -11,7 +11,7 @@ BASS_AAC - extension to the BASS audio library that enables the playback
 of Advanced Audio Coding and MPEG-4 streams (http://www.maresweb.de).
 '''
 
-import sys, ctypes, platform, pybass
+import sys, ctypes, platform, pybass, os
 
 QWORD = pybass.QWORD
 HSTREAM = pybass.HSTREAM
@@ -25,7 +25,7 @@ elif platform.system().lower() == 'darwin':
 	bass_aac_module = ctypes.CDLL('libbass_aac.dylib')
 	func_type = ctypes.CFUNCTYPE
 else:
-	bass_aac_module = ctypes.CDLL('libbass_aac.so')
+	bass_aac_module = ctypes.CDLL(os.getcwd() + '/libbass_aac.so')
 	func_type = ctypes.CFUNCTYPE
 
 

@@ -53,7 +53,7 @@ Main Features
   play samples/streams/musics in any 3D position, with EAX support
 '''
 
-import sys, ctypes, platform
+import sys, ctypes, platform, os
 
 if sys.hexversion < 0x02060000:
 	ctypes.c_bool = ctypes.c_byte
@@ -66,7 +66,7 @@ elif platform.system().lower() == 'darwin':
 	func_type = ctypes.CFUNCTYPE
 else:
 	# correct by Wasylews (sabov.97@mail.ru), thank him
-	bass_module = ctypes.CDLL('libbass.so', mode=ctypes.RTLD_GLOBAL)
+	bass_module = ctypes.CDLL(os.getcwd() + '/libbass.so', mode=ctypes.RTLD_GLOBAL)
 	func_type = ctypes.CFUNCTYPE
 
 QWORD = ctypes.c_int64
